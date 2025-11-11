@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP Analyzer - Enterprise RFP Analysis Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>RFP Analyzer</h1>
+        <p>Enterprise RFP Analysis Tool - Offline First, FedRAMP Ready</p>
+    </header>
+
+    <div class="container">
+        <div id="message-area"></div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="upload">Upload RFP</button>
+            <button class="tab-button" data-tab="review">Review Questions</button>
+            <button class="tab-button" data-tab="editor">Edit Responses</button>
+            <button class="tab-button" data-tab="export">Export</button>
+        </div>
+
+        <!-- Upload Tab -->
+        <div id="upload" class="tab-content active">
+            <div class="upload-zone" id="uploadZone">
+                <h3>📄 Upload RFP Document</h3>
+                <p>Drag and drop your PDF, Word, or text file here, or click to browse</p>
+                <p style="font-size: 0.85rem; color: #999;">Supported: PDF, DOCX, XLSX, TXT</p>
+            </div>
+            <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt,.xlsx" style="display:none;">
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="offlineMode" checked> Offline Mode (Recommended)
+                </label>
+            </div>
+        </div>
+
+        <!-- Review Tab -->
+        <div id="review" class="tab-content">
+            <h2>Review Extracted Questions</h2>
+            <div id="questionsList" class="questions-list"></div>
+        </div>
+
+        <!-- Editor Tab -->
+        <div id="editor" class="tab-content">
+            <h2>Edit Responses</h2>
+            <div id="responseEditor"></div>
+        </div>
+
+        <!-- Export Tab -->
+        <div id="export" class="tab-content">
+            <div class="export-panel">
+                <h2>Export Responses</h2>
+                
+                <div class="form-group">
+                    <label>Select Export Format</label>
+                    <div class="export-options">
+                        <label class="export-option">
+                            <input type="radio" name="format" value="json" checked> JSON
+                        </label>
+                        <label class="export-option">
+                            <input type="radio" name="format" value="txt"> Text
+                        </label>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem; padding: 1rem; background-color: #f0f7ff; border-radius: 4px;">
+                    <strong>Summary:</strong>
+                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                        <li>Total Questions: <span id="totalQuestions">0</span></li>
+                        <li>Completed Responses: <span id="completedResponses">0</span></li>
+                        <li>Completion Rate: <span id="completionRate">0</span>%</li>
+                    </ul>
+                </div>
+
+                <button class="button btn-primary" id="exportBtn">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
